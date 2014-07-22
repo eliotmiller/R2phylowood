@@ -1,12 +1,12 @@
-#this will be a small library made to take a nexus file & a data frame of traits where the
-#first and second columns are the latitude and longtiude, respectively, of the centroid
-#of the species' ranges in the phylogeny. will then return the components necessary to
-#build an nhx file for use in phylowood
-
-readTreeBlock <- function(file)
-{
-	require(ape)
-	temp.nex <- scan(file = file, what = "", sep = "\n", quiet = TRUE)
-	treeBlock <- temp.nex[length(temp.nex)-1]
-	return(treeBlock)
-}
+Package: R2phylowood
+Title: Convert species centroids to phylowood input
+Description: Add details later
+Version: 0.1
+Author: Eliot Miller
+Maintainer: Eliot Miller <eliot.isaac@gmail.com>
+Depends:
+    R (>= 3.0.0),
+	ape
+	phytools
+License: GPL-3
+LazyData: true
