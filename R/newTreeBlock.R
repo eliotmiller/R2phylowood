@@ -1,8 +1,11 @@
-#this function will take the output of readTreeBlock and return a new tree block for
-#pasting into the .nhx file
+#this function takes a nexus file and a desired root edge to add, and outputs a tree block
+#for pasting into an nhx file
 
 newTreeBlock <- function(file, root.edge)
 {
+	#load the phylogeny in
+	tree <- read.nexus(file)
+
 	#use the zeros and ones in the matrix to create a table of replacement character
 	#strings to add after each node in the output tree block
 	zeros.ones <- zerosOnes(file)
@@ -33,15 +36,9 @@ newTreeBlock <- function(file, root.edge)
 		outputBlock <- sub(lookupTable[i,3], paste(")", i, replacementTable[i], sep=""), outputBlock, fixed=TRUE)
 	}
 	
-	#replace the root edge with the right values from repTable. note that the way we
-	#define the root node is dangerous. Firstly, it assumes the tree is fully bifurcating.
-	#Secondly, it relies on R rounding 0.5 -> 0, which might be OS-specific. could just
-	#have it load tree, then get root node from that
+	#replace the root edge with the right values from repTable
 	
-	numberNodes <- round(dim(zeros.ones)[1]/2)
-	tips <- numberNodes + 1
-	
-	rootNode <- tips+1
+	rootNode <- length(tree$tip.label)+1
 	
 	outputBlock <- sub(pattern=paste(")", rootNode, ";", sep=""), 
 		replacement=paste(")", rootNode, replacementTable[rootNode], root.edge, ";", sep=""),
