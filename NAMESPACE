@@ -1,6 +1,6 @@
 export(newGeoBlock)
 export(newTreeBlock)
 export(readTreeBlock)
-export(zeroOnes)
+export(zerosOnes)
 import(phytools)
 import(ape)
