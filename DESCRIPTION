@@ -6,7 +6,7 @@ Author: Eliot Miller
 Maintainer: Eliot Miller <eliot.isaac@gmail.com>
 Depends:
     R (>= 3.0.0),
-	ape
+	ape,
 	phytools
 License: GPL-3
 LazyData: true
